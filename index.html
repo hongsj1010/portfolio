@@ -1,471 +1,214 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Portfolio 2026</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;700;900&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
-<style>
-:root {
-  --bg:       #F4F1EC;
-  --black:    #111010;
-  --white:    #FFFFFF;
-  --red:      #C8472B;
-  --blue:     #2255A4;
-  --green:    #25724A;
-  --gold:     #B08D42;
-  --muted:    #8A8580;
-  --border:   #DDD9D2;
-  --card:     #FFFFFF;
-  --light:    #F9F7F4;
-}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
+    :root {
+      --bg: #0d0d0d;
+      --surface: #161616;
+      --surface2: #1f1f1f;
+      --border: #2a2a2a;
+      --text: #e8e8e8;
+      --text-muted: #888;
+      --accent: #c8a96e;
+      --accent2: #7eb8a4;
+      --white: #fff;
+      --font-sans: 'Inter', 'Noto Sans KR', sans-serif;
+    }
 
-body {
-  background: var(--bg);
-  color: var(--black);
-  font-family: 'Noto Sans KR', sans-serif;
-  font-weight: 400;
-  line-height: 1.75;
-  overflow-x: hidden;
-}
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: var(--font-sans); font-size: 15px; line-height: 1.7; }
 
-/* ── NAV ── */
-nav {
-  position: sticky; top: 0; z-index: 200;
-  background: rgba(244,241,236,0.94);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--border);
-  padding: 0 7vw;
-  display: flex; align-items: center;
-  height: 52px;
-}
-.nav-logo {
-  font-family: 'DM Mono', monospace; font-size: 11px;
-  letter-spacing: .18em; color: var(--muted);
-  margin-right: auto; text-transform: uppercase;
-}
-nav a {
-  font-family: 'DM Mono', monospace; font-size: 11px;
-  letter-spacing: .08em; text-transform: uppercase;
-  color: var(--black); text-decoration: none;
-  padding: 0 14px; height: 52px;
-  display: flex; align-items: center;
-  border-bottom: 2px solid transparent;
-  opacity: .4; transition: opacity .2s, border-color .2s;
-}
-nav a:hover { opacity: 1; }
-nav a.active { opacity: 1; border-bottom-color: var(--red); }
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 48px; height: 56px;
+      background: rgba(13,13,13,.92); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo { font-size: 13px; letter-spacing: .12em; color: var(--accent); font-weight: 500; text-transform: uppercase; }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 13px; letter-spacing: .06em; transition: color .2s; }
+    .nav-links a:hover { color: var(--white); }
 
-/* ── HERO ── */
-.hero {
-  display: grid; grid-template-columns: 1fr 1fr;
-  min-height: 100vh;
-  border-bottom: 1.5px solid var(--black);
-}
-.hero-left {
-  padding: 100px 7vw 80px;
-  border-right: 1.5px solid var(--black);
-  display: flex; flex-direction: column; justify-content: flex-end;
-  position: relative; overflow: hidden;
-}
-.hero-left::before {
-  content: '';
-  position: absolute; inset: 0;
-  background: repeating-linear-gradient(
-    -45deg, transparent, transparent 26px,
-    rgba(0,0,0,.022) 26px, rgba(0,0,0,.022) 27px
-  );
-  pointer-events: none;
-}
-.hero-eyebrow {
-  font-family: 'DM Mono', monospace; font-size: 11px;
-  letter-spacing: .2em; text-transform: uppercase;
-  color: var(--muted); margin-bottom: 28px;
-  animation: up .65s ease both;
-}
-.hero-title {
-  font-family: 'Noto Serif KR', serif; font-weight: 900;
-  font-size: clamp(40px, 5.2vw, 72px);
-  line-height: 1.06; letter-spacing: -.03em;
-  margin-bottom: 28px;
-  animation: up .65s .08s ease both;
-}
-.hero-title em { color: var(--red); font-style: normal; }
-.hero-summary {
-  font-size: 15px; color: #555; line-height: 1.88;
-  max-width: 460px; margin-bottom: 44px;
-  animation: up .65s .15s ease both;
-}
-.hero-chips {
-  display: flex; flex-wrap: wrap; gap: 8px;
-  animation: up .65s .22s ease both;
-}
-.chip {
-  padding: 5px 14px; border: 1.5px solid var(--black);
-  border-radius: 100px; font-size: 12px;
-  font-family: 'DM Mono', monospace; letter-spacing: .04em;
-}
-.chip-filled { background: var(--black); color: #fff; }
+    /* HERO */
+    #hero {
+      min-height: 100vh; display: flex; flex-direction: column; justify-content: center;
+      padding: 120px 48px 80px; max-width: 1100px; margin: 0 auto;
+    }
+    .hero-eyebrow { font-size: 12px; letter-spacing: .18em; color: var(--accent); text-transform: uppercase; margin-bottom: 28px; }
+    .hero-title { font-size: clamp(36px, 6vw, 72px); font-weight: 700; line-height: 1.15; color: var(--white); margin-bottom: 32px; }
+    .hero-title em { font-style: normal; color: var(--accent); }
+    .hero-desc { font-size: 16px; color: var(--text-muted); max-width: 640px; line-height: 1.8; margin-bottom: 48px; }
+    .hero-meta { font-size: 13px; color: var(--text-muted); margin-bottom: 56px; border-left: 2px solid var(--accent); padding-left: 16px; }
 
-.hero-right {
-  padding: 100px 7vw 80px;
-  display: flex; flex-direction: column; justify-content: flex-end;
-  gap: 28px;
-}
-.stat { animation: up .65s .28s ease both; padding: 20px 0; border-bottom: 1px solid var(--border); }
-.stat:last-of-type { border-bottom: none; }
-.stat-num {
-  font-family: 'Noto Serif KR', serif; font-weight: 900;
-  font-size: clamp(38px, 5.2vw, 68px);
-  letter-spacing: -.04em; line-height: 1;
-}
-.stat-num span { color: var(--red); }
-.stat-label {
-  font-family: 'DM Mono', monospace; font-size: 12px;
-  color: var(--muted); letter-spacing: .1em;
-  text-transform: uppercase; margin-top: 8px;
-}
-.career-badges { display: flex; flex-direction: column; gap: 10px; animation: up .65s .36s ease both; }
-.cbadge {
-  display: flex; align-items: center; gap: 12px;
-  padding: 13px 18px; border: 1px solid var(--border);
-  border-radius: 10px; background: var(--card);
-}
-.cbadge-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
-.cbadge-name { font-weight: 700; font-size: 13.5px; }
-.cbadge-sub { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); margin-top: 2px; }
+    .hero-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 56px; }
+    .tag { padding: 6px 14px; border: 1px solid var(--border); border-radius: 4px; font-size: 12px; letter-spacing: .05em; color: var(--text-muted); }
 
-/* ── SECTION ── */
-.section {
-  padding: 92px 7vw;
-  border-bottom: 1px solid var(--border);
-}
+    .hero-stats { display: flex; gap: 48px; }
+    .stat-val { font-size: 36px; font-weight: 700; color: var(--accent); }
+    .stat-val span { color: var(--accent); }
+    .stat-label { font-size: 12px; color: var(--text-muted); margin-top: 4px; letter-spacing: .04em; }
 
-.sec-hd {
-  display: grid; grid-template-columns: 52px 1fr;
-  gap: 8px; align-items: start;
-  margin-bottom: 52px;
-}
-.sec-num {
-  font-family: 'DM Mono', monospace; font-size: 11px;
-  color: var(--muted); letter-spacing: .1em; padding-top: 9px;
-}
-.sec-title {
-  font-family: 'Noto Serif KR', serif; font-weight: 900;
-  font-size: clamp(26px, 3.8vw, 48px);
-  letter-spacing: -.025em; line-height: 1.1;
-}
-.tag {
-  display: inline-block; vertical-align: middle;
-  padding: 3px 11px; border-radius: 4px;
-  font-family: 'DM Mono', monospace; font-size: 11px;
-  font-weight: 500; letter-spacing: .06em;
-  margin-left: 10px; position: relative; top: -4px;
-  font-style: normal;
-}
-.t-red   { background: var(--red);   color: #fff; }
-.t-blue  { background: var(--blue);  color: #fff; }
-.t-green { background: var(--green); color: #fff; }
-.t-gold  { background: var(--gold);  color: #fff; }
+    /* CAREER SUMMARY */
+    #career { padding: 80px 48px; max-width: 1100px; margin: 0 auto; }
+    .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 48px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+    .section-num { font-size: 12px; color: var(--accent); letter-spacing: .1em; font-weight: 600; }
+    .section-title { font-size: 28px; font-weight: 700; color: var(--white); }
+    .section-sub { font-size: 13px; color: var(--text-muted); letter-spacing: .08em; margin-left: auto; }
 
-/* ── COMPANY BLOCK ── */
-.co-block {
-  border: 1.5px solid var(--border); border-radius: 14px;
-  overflow: hidden; background: var(--card); margin-bottom: 24px;
-}
-.co-head {
-  padding: 20px 30px;
-  border-bottom: 1px solid var(--border);
-  display: flex; align-items: flex-start;
-  justify-content: space-between; flex-wrap: wrap; gap: 12px;
-}
-.co-name {
-  font-family: 'Noto Serif KR', serif; font-weight: 700; font-size: 19px;
-}
-.co-sub { font-size: 13px; color: var(--muted); margin-top: 3px; }
-.co-period {
-  font-family: 'DM Mono', monospace; font-size: 11.5px;
-  letter-spacing: .04em; padding: 4px 12px;
-  border-radius: 100px; border: 1.5px solid currentColor;
-  white-space: nowrap; align-self: flex-start;
-}
-.co-body { padding: 26px 30px; }
+    .career-list { display: flex; flex-direction: column; gap: 0; }
+    .career-item { display: grid; grid-template-columns: 200px 1fr; gap: 32px; padding: 32px 0; border-bottom: 1px solid var(--border); }
+    .career-date { font-size: 13px; color: var(--text-muted); }
+    .career-date .badge { display: inline-block; font-size: 11px; padding: 2px 8px; border: 1px solid var(--accent); color: var(--accent); border-radius: 3px; margin-bottom: 8px; letter-spacing: .06em; }
+    .career-info h3 { font-size: 17px; font-weight: 600; color: var(--white); margin-bottom: 4px; }
+    .career-info .role { font-size: 13px; color: var(--text-muted); margin-bottom: 12px; }
+    .career-info ul { padding-left: 16px; }
+    .career-info li { font-size: 14px; color: var(--text-muted); margin-bottom: 6px; }
 
-/* ── CARDS ── */
-.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
-.grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 18px; }
+    /* PERF */
+    #perf { padding: 80px 48px; max-width: 1100px; margin: 0 auto; background: none; }
 
-.card {
-  background: var(--card); border: 1.5px solid var(--border);
-  border-radius: 11px; padding: 24px 26px;
-  position: relative; overflow: hidden;
-  transition: border-color .2s, transform .2s, box-shadow .2s;
-}
-.card:hover { border-color: var(--black); transform: translateY(-3px); box-shadow: 0 10px 28px rgba(0,0,0,.07); }
-.card::before {
-  content: ''; position: absolute;
-  top: 0; left: 0; width: 4px; height: 100%;
-}
-.cr::before { background: var(--red); }
-.cb::before { background: var(--blue); }
-.cg::before { background: var(--green); }
-.ck::before { background: var(--black); }
+    .ad-summary { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-bottom: 48px; background: var(--border); }
+    .ad-box { background: var(--surface); padding: 28px 24px; }
+    .ad-box-val { font-size: 28px; font-weight: 700; color: var(--accent); }
+    .ad-box-val span { color: var(--accent); }
+    .ad-box-label { font-size: 12px; color: var(--text-muted); margin-top: 6px; }
 
-.card-t { font-weight: 700; font-size: 15px; padding-left: 4px; margin-bottom: 6px; }
-.card-m {
-  font-family: 'DM Mono', monospace; font-size: 11px;
-  color: var(--muted); padding-left: 4px; margin-bottom: 14px;
-}
-.card ul { list-style: none; padding: 0; }
-.card ul li {
-  padding: 6px 0 6px 18px; position: relative;
-  font-size: 13.5px; line-height: 1.65; color: #333;
-  border-bottom: 1px solid #F0EDE8;
-}
-.card ul li:last-child { border-bottom: none; }
-.card ul li::before { content: '→'; position: absolute; left: 0; color: var(--muted); font-size: 11px; top: 8px; }
-.kpis {
-  display: flex; flex-wrap: wrap; gap: 7px;
-  margin-top: 14px; padding-top: 12px;
-  border-top: 1px solid var(--border);
-}
-.kpi {
-  background: var(--light); border-radius: 5px;
-  padding: 4px 11px; font-size: 11.5px;
-  font-family: 'DM Mono', monospace;
-}
-.kpi strong { color: var(--red); }
+    .brand-cards { display: flex; flex-direction: column; gap: 32px; }
+    .brand-section { margin-bottom: 48px; }
+    .brand-section-header { margin-bottom: 24px; border-left: 3px solid var(--accent); padding-left: 16px; }
+    .brand-section-header h3 { font-size: 17px; font-weight: 600; color: var(--white); }
+    .brand-section-header .period { font-size: 13px; color: var(--text-muted); margin-top: 2px; }
 
-/* ── TIMELINE ── */
-.timeline { display: flex; flex-direction: column; }
-.tl {
-  display: grid; grid-template-columns: 160px 1fr;
-}
-.tl-l {
-  padding: 28px 28px 28px 0;
-  border-right: 2px solid var(--border);
-  text-align: right; position: relative;
-}
-.tl-l::after {
-  content: ''; position: absolute;
-  right: -7px; top: 34px;
-  width: 12px; height: 12px; border-radius: 50%;
-  border: 2px solid var(--black); background: var(--bg);
-}
-.tl-active .tl-l::after { background: var(--red); border-color: var(--red); }
-.tl-period {
-  font-family: 'DM Mono', monospace; font-size: 12px;
-  color: var(--muted); line-height: 1.6;
-}
-.tl-dur {
-  display: inline-block; margin-top: 5px;
-  padding: 2px 8px; background: var(--light);
-  border-radius: 4px; font-family: 'DM Mono', monospace;
-  font-size: 11px; color: var(--muted);
-}
-.tl-r { padding: 24px 0 24px 28px; }
-.tl-co {
-  font-family: 'Noto Serif KR', serif; font-weight: 700;
-  font-size: 17px; margin-bottom: 3px;
-}
-.tl-role {
-  font-family: 'DM Mono', monospace; font-size: 11.5px;
-  color: var(--muted); letter-spacing: .04em; margin-bottom: 12px;
-}
-.tl-ul { list-style: none; padding: 0; }
-.tl-ul li {
-  padding: 3px 0 3px 14px; position: relative;
-  font-size: 13.5px; color: #444; line-height: 1.65;
-}
-.tl-ul li::before { content: '·'; position: absolute; left: 3px; font-weight: 700; color: var(--muted); }
+    .brand-card { background: var(--surface); border: 1px solid var(--border); padding: 24px 28px; margin-bottom: 16px; }
+    .brand-card-title { font-size: 15px; font-weight: 600; color: var(--white); margin-bottom: 4px; }
+    .brand-card-period { font-size: 12px; color: var(--accent); margin-bottom: 12px; }
+    .brand-card ul { padding-left: 16px; }
+    .brand-card li { font-size: 14px; color: var(--text-muted); margin-bottom: 6px; }
+    .brand-card-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+    .kpi-tag { font-size: 11px; padding: 4px 10px; background: rgba(200,169,110,.12); border: 1px solid rgba(200,169,110,.3); color: var(--accent); border-radius: 3px; letter-spacing: .04em; }
 
-/* ── SKILLS ── */
-.skill-groups { display: flex; flex-direction: column; gap: 36px; }
-.sg-title {
-  font-family: 'DM Mono', monospace; font-size: 11px;
-  letter-spacing: .18em; text-transform: uppercase;
-  color: var(--muted); margin-bottom: 14px;
-}
-.pills { display: flex; flex-wrap: wrap; gap: 9px; }
-.pill {
-  padding: 7px 16px; border-radius: 8px;
-  font-size: 13px; font-family: 'DM Mono', monospace;
-  letter-spacing: .03em; border: 1.5px solid var(--border);
-  background: var(--card);
-  transition: border-color .18s, transform .18s;
-}
-.pill:hover { border-color: var(--black); transform: translateY(-2px); }
-.pill-s { background: var(--black); color: #fff; border-color: var(--black); }
+    /* MUSIC */
+    #music { padding: 80px 48px; max-width: 1100px; margin: 0 auto; }
 
-/* ── CERT / EDU ── */
-.cert-grid {
-  display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
-  gap: 13px;
-}
-.cert {
-  background: var(--card); border: 1.5px solid var(--border);
-  border-radius: 10px; padding: 17px 19px;
-  transition: border-color .18s;
-}
-.cert:hover { border-color: var(--black); }
-.cert-n { font-weight: 700; font-size: 13.5px; margin-bottom: 4px; }
-.cert-i { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
+    .ent-summary { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-bottom: 48px; background: var(--border); }
+    .ent-box { background: var(--surface); padding: 28px 24px; }
+    .ent-box-val { font-size: 28px; font-weight: 700; color: var(--accent2); }
+    .ent-box-val span { color: var(--accent2); }
+    .ent-box-label { font-size: 12px; color: var(--text-muted); margin-top: 6px; }
 
-.edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
-.edu {
-  background: var(--card); border: 1.5px solid var(--border);
-  border-radius: 12px; padding: 26px 28px;
-  transition: border-color .18s;
-}
-.edu:hover { border-color: var(--black); }
-.edu-cat {
-  font-family: 'DM Mono', monospace; font-size: 10.5px;
-  letter-spacing: .14em; text-transform: uppercase;
-  color: var(--muted); margin-bottom: 10px;
-}
-.edu-school {
-  font-family: 'Noto Serif KR', serif; font-weight: 700;
-  font-size: 17px; margin-bottom: 10px;
-}
-.edu-info { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--muted); line-height: 1.7; }
-.badge-sm {
-  display: inline-block; margin-top: 12px; margin-right: 6px;
-  padding: 3px 11px; background: var(--light);
-  border-radius: 5px; font-family: 'DM Mono', monospace;
-  font-size: 11.5px;
-}
-.badge-sm-dark { background: var(--black); color: #fff; }
+    .ent-blocks { display: flex; flex-direction: column; gap: 0; }
+    .ent-block { padding: 32px 0; border-bottom: 1px solid var(--border); }
+    .ent-block-header { margin-bottom: 16px; border-left: 3px solid var(--accent2); padding-left: 16px; }
+    .ent-block-header h3 { font-size: 17px; font-weight: 600; color: var(--white); }
+    .ent-block-header .sub { font-size: 13px; color: var(--text-muted); margin-top: 2px; }
+    .ent-block ul { padding-left: 16px; }
+    .ent-block li { font-size: 14px; color: var(--text-muted); margin-bottom: 6px; }
+    .ent-block-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+    .ent-tag { font-size: 11px; padding: 4px 10px; background: rgba(126,184,164,.1); border: 1px solid rgba(126,184,164,.3); color: var(--accent2); border-radius: 3px; letter-spacing: .04em; }
+    .ent-kpi { font-size: 11px; padding: 4px 10px; background: rgba(126,184,164,.1); border: 1px solid rgba(126,184,164,.3); color: var(--accent2); border-radius: 3px; letter-spacing: .04em; }
 
-/* ── DIVIDER ── */
-.div {
-  display: flex; align-items: center; gap: 14px;
-  margin: 44px 0 30px;
-}
-.div-line { flex: 1; height: 1px; background: var(--border); }
-.div-label {
-  font-family: 'DM Mono', monospace; font-size: 11px;
-  color: var(--muted); letter-spacing: .14em;
-  text-transform: uppercase; white-space: nowrap;
-}
+    /* SKILLS */
+    #skills { padding: 80px 48px; max-width: 1100px; margin: 0 auto; }
+    .skills-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; background: var(--border); }
+    .skill-block { background: var(--surface); padding: 28px 24px; }
+    .skill-block h4 { font-size: 13px; font-weight: 600; color: var(--text-muted); letter-spacing: .08em; text-transform: uppercase; margin-bottom: 16px; }
+    .skill-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chip { font-size: 12px; padding: 5px 12px; background: var(--surface2); border: 1px solid var(--border); color: var(--text); border-radius: 3px; }
+    .cert-row { display: flex; flex-direction: column; gap: 10px; }
+    .cert-item { font-size: 13px; color: var(--text-muted); }
+    .cert-item strong { color: var(--white); display: block; }
 
-footer {
-  padding: 44px 7vw;
-  display: flex; justify-content: space-between; align-items: center;
-  font-family: 'DM Mono', monospace; font-size: 11.5px; color: var(--muted);
-  border-top: 1px solid var(--border);
-}
+    /* FOOTER */
+    footer {
+      padding: 40px 48px; border-top: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .footer-logo { font-size: 13px; letter-spacing: .12em; color: var(--accent); font-weight: 500; text-transform: uppercase; }
+    .footer-copy { font-size: 12px; color: var(--text-muted); }
 
-@keyframes up {
-  from { opacity: 0; transform: translateY(16px); }
-  to   { opacity: 1; transform: none; }
-}
-
-@media (max-width: 880px) {
-  .hero { grid-template-columns: 1fr; }
-  .hero-left { border-right: none; border-bottom: 1.5px solid var(--black); min-height: 55vh; }
-  .grid2, .grid3, .edu-grid { grid-template-columns: 1fr; }
-  nav a { padding: 0 9px; font-size: 10px; }
-}
-@media (max-width: 560px) {
-  .section { padding: 60px 5vw; }
-  .hero-left, .hero-right { padding: 56px 6vw; }
-  .tl { grid-template-columns: 100px 1fr; }
-  footer { flex-direction: column; gap: 8px; text-align: center; }
-}
-</style>
+    @media (max-width: 768px) {
+      nav { padding: 0 20px; }
+      .nav-links { gap: 16px; }
+      #hero, #career, #perf, #music, #skills { padding: 60px 20px; }
+      .career-item { grid-template-columns: 1fr; gap: 8px; }
+      .hero-stats { flex-wrap: wrap; gap: 28px; }
+      .ad-summary, .ent-summary { grid-template-columns: 1fr; }
+      .skills-grid { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 12px; align-items: flex-start; padding: 32px 20px; }
+    }
+  </style>
 </head>
 <body>
 
 <nav>
-  <span class="nav-logo">Portfolio · 2026</span>
-  <a href="#hero" class="active">Intro</a>
-  <a href="#career">경력</a>
-  <a href="#perf">광고·마케팅</a>
-  <a href="#music">엔터·유통</a>
-  <a href="#skills">역량</a>
+  <div class="nav-logo">Portfolio · 2026</div>
+  <ul class="nav-links">
+    <li><a href="#hero">Intro</a></li>
+    <li><a href="#career">경력</a></li>
+    <li><a href="#perf">광고·마케팅</a></li>
+    <li><a href="#music">엔터·유통</a></li>
+    <li><a href="#skills">역량</a></li>
+  </ul>
 </nav>
 
 <!-- HERO -->
-<div id="hero" style="border-bottom:1.5px solid var(--black)">
-  <div class="hero">
-    <div class="hero-left">
-      <div class="hero-eyebrow">Portfolio · 2026 · 경력 약 4년 8개월</div>
-      <h1 class="hero-title">엔터를 알고<br>광고를 실행하는<br><em>비즈니스 파트너</em></h1>
-      <p class="hero-summary">
-        K-POP 레이블과의 실무 협업부터 멀티 브랜드 퍼포먼스 마케팅까지, 엔터테인먼트 산업과 광고 비즈니스를 모두 경험해왔습니다. 데이터 기반의 꼼꼼한 분석과 대내외 파트너와의 능동적인 커뮤니케이션으로, 어떤 광고 프로젝트도 확실하게 완성해내겠습니다!
-        <br><br>
-        단국대학교 응용통계학과 (경제학 부전공) 졸업 · TOEIC Speaking IH · SQL 개발자 · GAIQ 보유.
-      </p>
-      <div class="hero-chips">
-        <span class="chip chip-filled">엔터테인먼트 실무</span>
-        <span class="chip chip-filled">광고 매체 운영</span>
-        <span class="chip chip-filled">데이터 분석</span>
-        <span class="chip">K-POP 레이블 협업</span>
-        <span class="chip">SA · DA 운영</span>
-        <span class="chip">TOEIC Speaking IH</span>
-        <span class="chip">SQL · GAIQ</span>
-      </div>
+<section id="hero">
+  <p class="hero-eyebrow">Portfolio · 2026 · 경력 약 4년 8개월</p>
+  <h1 class="hero-title">엔터를 알고<br/>광고를 실행하는<br/><em>비즈니스 파트너</em></h1>
+  <p class="hero-desc">K-POP 레이블과의 실무 협업부터 멀티 브랜드 퍼포먼스 마케팅까지, 엔터테인먼트 산업과 광고 비즈니스를 모두 경험해왔습니다. 데이터 기반의 꼼꼼한 분석과 대내외 파트너와의 능동적인 커뮤니케이션으로, 어떤 광고 프로젝트도 확실하게 완성해내겠습니다!</p>
+  <p class="hero-meta">단국대학교 응용통계학과 (경제학 부전공) 졸업 · TOEIC Speaking IH · SQL 개발자 · GAIQ 보유.</p>
+  <div class="hero-tags">
+    <span class="tag">엔터테인먼트 실무</span>
+    <span class="tag">광고 매체 운영</span>
+    <span class="tag">데이터 분석</span>
+    <span class="tag">K-POP 레이블 협업</span>
+    <span class="tag">SA · DA 운영</span>
+    <span class="tag">TOEIC Speaking IH</span>
+    <span class="tag">SQL · GAIQ</span>
+  </div>
+  <div class="hero-stats">
+    <div>
+      <div class="stat-val">200 <span>+</span></div>
+      <div class="stat-label">월 메타데이터 검수 건수</div>
     </div>
-
-    <div class="hero-right">
-      <div class="stat">
-        <div class="stat-num">200<span> +</span></div>
-        <div class="stat-label">월 메타데이터 검수 건수</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num" style="font-size:clamp(28px,3.6vw,50px)">ROAS<span> 1,000% +</span></div>
-        <div class="stat-label">퍼포먼스 마케팅 KPI 목표</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num">95점<span> +</span></div>
-        <div class="stat-label">Apple Music 스코어카드 연평균</div>
-      </div>
-      <div class="career-badges">
-        <div class="cbadge">
-          <div class="cbadge-dot" style="background:var(--red)"></div>
-          <div>
-            <div class="cbadge-name">(주)와이지플러스 — 재직중</div>
-            <div class="cbadge-sub">디지털유통팀 · 음원유통 매니저 · 2023.10 ~</div>
-          </div>
-        </div>
-        <div class="cbadge">
-          <div class="cbadge-dot" style="background:var(--blue)"></div>
-          <div>
-            <div class="cbadge-name">주식회사아이비알커머스</div>
-            <div class="cbadge-sub">마케팅팀 · 퍼포먼스 마케터 · 2023.06 – 2023.09</div>
-          </div>
-        </div>
-        <div class="cbadge">
-          <div class="cbadge-dot" style="background:var(--green)"></div>
-          <div>
-            <div class="cbadge-name">(주)비앤리커뮤니케이션즈</div>
-            <div class="cbadge-sub">PM1팀 · 퍼포먼스 마케터 · 2021.10 – 2023.05</div>
-          </div>
-        </div>
-      </div>
+    <div>
+      <div class="stat-val">ROAS 1,000<span>%+</span></div>
+      <div class="stat-label">퍼포먼스 마케팅 KPI 목표</div>
+    </div>
+    <div>
+      <div class="stat-val">95<span>점+</span></div>
+      <div class="stat-label">Apple Music 스코어카드 연평균</div>
     </div>
   </div>
-</div>
+</section>
 
-<!-- 00. 경력 타임라인 -->
-<section class="section" id="career">
-  <div class="sec-hd">
-    <div class="sec-num">00 /</div>
-    <h2 class="sec-title">경력 요약<em class="tag t-gold">Career</em></h2>
+<!-- CAREER -->
+<section id="career">
+  <div class="section-header">
+    <span class="section-num">00 /</span>
+    <h2 class="section-title">경력 요약</h2>
+    <span class="section-sub">Career</span>
   </div>
-  <div class="timeline">
-    <div class="tl tl-active">
-      <div class="tl-l">
-        <div class="tl-period">2023.10<br>— 현재</div>
-        <span class="tl-dur">재직중</span>
+  <div class="career-list">
+    <div class="career-item">
+      <div class="career-date">
+        <div class="badge">재직중</div>
+        <div>2023.10 — 현재</div>
       </div>
-      <div class="tl-r">
-        <div class="tl-co">(주)와이지플러스</div>
-        <div class="tl-role">디지털유통팀 · 음원유통 매니저</div>
-        <ul class="tl-ul">
+      <div class="career-info">
+        <h3>(주)와이지플러스</h3>
+        <div class="role">디지털유통팀 · 음원유통 매니저</div>
+        <ul>
           <li>국내·외 플랫폼 유통 및 발매 시스템·메타데이터 정합성 관리 전담</li>
           <li>더블랙레이블 · HYBE · VLAST 등 대형 레이블 발매 프로세스 전담</li>
           <li>Apple Music 스코어카드 연 평균 95점 이상 유지</li>
@@ -474,29 +217,29 @@ footer {
         </ul>
       </div>
     </div>
-    <div class="tl">
-      <div class="tl-l">
-        <div class="tl-period">2023.06<br>— 2023.09</div>
-        <span class="tl-dur">4개월</span>
+    <div class="career-item">
+      <div class="career-date">
+        <div>2023.06 — 2023.09</div>
+        <div style="font-size:12px;color:var(--text-muted);margin-top:4px;">4개월</div>
       </div>
-      <div class="tl-r">
-        <div class="tl-co">주식회사아이비알커머스</div>
-        <div class="tl-role">마케팅팀 · 퍼포먼스 마케터 (사원)</div>
-        <ul class="tl-ul">
+      <div class="career-info">
+        <h3>주식회사아이비알커머스</h3>
+        <div class="role">마케팅팀 · 퍼포먼스 마케터 (사원)</div>
+        <ul>
           <li>브랜드 KPI에 따른 SA · DA · 오픈마켓 매체 운영 및 효율 분석</li>
           <li>월간 성과 보고서 작성 및 광고비 정산</li>
         </ul>
       </div>
     </div>
-    <div class="tl">
-      <div class="tl-l">
-        <div class="tl-period">2021.10<br>— 2023.05</div>
-        <span class="tl-dur">1년 8개월</span>
+    <div class="career-item">
+      <div class="career-date">
+        <div>2021.10 — 2023.05</div>
+        <div style="font-size:12px;color:var(--text-muted);margin-top:4px;">1년 8개월</div>
       </div>
-      <div class="tl-r">
-        <div class="tl-co">(주)비앤리커뮤니케이션즈</div>
-        <div class="tl-role">PM1팀 · 퍼포먼스 마케터 (사원)</div>
-        <ul class="tl-ul">
+      <div class="career-info">
+        <h3>(주)비앤리커뮤니케이션즈</h3>
+        <div class="role">PM1팀 · 퍼포먼스 마케터 (사원)</div>
+        <ul>
           <li>슈마커(16개월)·메디덴코(12개월)·깊은바다·플린 등 멀티 브랜드 SA·DA 운영</li>
           <li>KPI 기반 매체 운영 전략 수립, 월간 보고 및 정산</li>
           <li>프로모션 기간 키워드·소재·그룹 별도 세팅으로 전환율 증대</li>
@@ -506,314 +249,251 @@ footer {
   </div>
 </section>
 
-<!-- 01. 광고·퍼포먼스 마케팅 -->
-<section class="section" id="perf">
-  <div class="sec-hd">
-    <div class="sec-num">01 /</div>
-    <h2 class="sec-title">광고 · 퍼포먼스 마케팅<em class="tag t-green">Ad & Performance</em></h2>
+<!-- PERF -->
+<section id="perf">
+  <div class="section-header">
+    <span class="section-num">01 /</span>
+    <h2 class="section-title">광고 · 퍼포먼스 마케팅</h2>
+    <span class="section-sub">Ad &amp; Performance</span>
   </div>
 
-  <!-- 강점 요약 배너 -->
-  <div style="background:var(--black);border-radius:14px;padding:28px 32px;margin-bottom:24px;display:flex;flex-wrap:wrap;gap:24px;align-items:center">
-    <div style="flex:1;min-width:200px">
-      <div style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#888;margin-bottom:8px">광고 운영 강점 요약</div>
-      <div style="font-family:'Noto Serif KR',serif;font-weight:700;font-size:20px;color:#fff;line-height:1.5">멀티 브랜드 · 멀티 채널 동시 운영<br>데이터 기반 KPI 달성 실행력</div>
+  <div class="ad-summary">
+    <div class="ad-box">
+      <div class="ad-box-val">4<span> 개+</span></div>
+      <div class="ad-box-label">동시 담당 브랜드</div>
     </div>
-    <div style="display:flex;gap:16px;flex-wrap:wrap">
-      <div style="text-align:center;padding:16px 20px;border:1px solid #333;border-radius:10px">
-        <div style="font-family:'Noto Serif KR',serif;font-weight:900;font-size:32px;color:#fff"><span style="color:var(--red)">4</span><span style="color:var(--red)"> 개+</span></div>
-        <div style="font-family:'DM Mono',monospace;font-size:10px;color:#888;margin-top:4px;letter-spacing:.08em">동시 담당 브랜드</div>
-      </div>
-      <div style="text-align:center;padding:16px 20px;border:1px solid #333;border-radius:10px">
-        <div style="font-family:'Noto Serif KR',serif;font-weight:900;font-size:32px;color:#fff">ROAS<span style="color:var(--red)"> 1,000% +</span></div>
-        <div style="font-family:'DM Mono',monospace;font-size:10px;color:#888;margin-top:4px;letter-spacing:.08em">KPI 목표 달성</div>
-      </div>
-      <div style="text-align:center;padding:16px 20px;border:1px solid #333;border-radius:10px">
-        <div style="font-family:'Noto Serif KR',serif;font-weight:900;font-size:32px;color:#fff"><span style="color:var(--red)">2년+</span></div>
-        <div style="font-family:'DM Mono',monospace;font-size:10px;color:#888;margin-top:4px;letter-spacing:.08em">광고 실무 경력</div>
-      </div>
+    <div class="ad-box">
+      <div class="ad-box-val">ROAS <span>1,000%+</span></div>
+      <div class="ad-box-label">KPI 목표 달성</div>
+    </div>
+    <div class="ad-box">
+      <div class="ad-box-val">2<span>년+</span></div>
+      <div class="ad-box-label">광고 실무 경력</div>
     </div>
   </div>
 
-  <!-- 비앤리 -->
-  <div class="co-block" style="margin-bottom:24px">
-    <div class="co-head">
-      <div>
-        <div class="co-name">(주)비앤리커뮤니케이션즈</div>
-        <div class="co-sub">PM1팀 · 퍼포먼스 마케터 (사원)</div>
-      </div>
-      <span class="co-period" style="color:var(--green)">2021.10 — 2023.05 · 1년 8개월</span>
+  <div class="brand-section">
+    <div class="brand-section-header">
+      <h3>(주)비앤리커뮤니케이션즈</h3>
+      <div class="period">PM1팀 · 퍼포먼스 마케터 (사원) · 2021.10 — 2023.05 · 1년 8개월</div>
     </div>
-    <div class="co-body">
-      <div class="grid2" style="margin-bottom:18px">
-        <div class="card cg">
-          <div class="card-t">슈마커 — 슈즈 멀티샵</div>
-          <div class="card-m">2021.11 – 2023.02 · 16개월 담당</div>
-          <ul>
-            <li>네이버 SA · GDN · 카카오 DA 멀티 매체 운영 및 주·월간 효율 분석 리포팅</li>
-            <li>매월 효율·이슈 기반 SA·DA 운영 전략 수정 및 실행 제안</li>
-            <li>프로모션 시즌 전환 증대를 위한 키워드·소재·그룹 별도 세팅</li>
-          </ul>
-          <div class="kpis">
-            <span class="kpi">KPI <strong>ROAS 1,000% +</strong></span>
-            <span class="kpi">SA · DA 멀티 운영</span>
-            <span class="kpi">16개월</span>
-          </div>
-        </div>
-        <div class="card cg">
-          <div class="card-t">메디덴코 — 생애주기 치약</div>
-          <div class="card-m">2022.01 – 2023.01 · 12개월 담당</div>
-          <ul>
-            <li>SA · DA · 오픈마켓(쿠팡·스마트스토어) 멀티 채널 동시 운영</li>
-            <li>채널별 효율 분석 및 예산 배분 최적화 제안</li>
-            <li>프로모션 기간 키워드·소재 별도 세팅으로 유입·전환 증대</li>
-          </ul>
-          <div class="kpis">
-            <span class="kpi">KPI 월 매출 <strong>3,000만  원+</strong></span>
-            <span class="kpi">SA · DA · 오픈마켓</span>
-            <span class="kpi">12개월</span>
-          </div>
-        </div>
+
+    <div class="brand-card">
+      <div class="brand-card-title">슈마커 — 슈즈 멀티샵</div>
+      <div class="brand-card-period">2021.11 – 2023.02 · 16개월 담당</div>
+      <ul>
+        <li>네이버 SA · GDN · 카카오 DA 멀티 매체 운영 및 주·월간 효율 분석 리포팅</li>
+        <li>매월 효율·이슈 기반 SA·DA 운영 전략 수정 및 실행 제안</li>
+        <li>프로모션 시즌 전환 증대를 위한 키워드·소재·그룹 별도 세팅</li>
+      </ul>
+      <div class="brand-card-tags">
+        <span class="kpi-tag">KPI ROAS 1,000%+</span>
+        <span class="kpi-tag">SA · DA 멀티 운영</span>
+        <span class="kpi-tag">16개월</span>
       </div>
-      <div class="grid2">
-        <div class="card cg">
-          <div class="card-t">깊은바다 — 해양심층수</div>
-          <div class="card-m">2023.01 – 2023.02 · 2개월 담당</div>
-          <ul>
-            <li>SA · DA 매체 운영 및 효율 분석</li>
-            <li>프로모션 기간 키워드·소재 별도 세팅으로 전환 증대</li>
-            <li>단기 집중 운영으로 목표 KPI 달성 및 운영 노하우 축적</li>
-          </ul>
-          <div class="kpis">
-            <span class="kpi">KPI <strong>ROAS 200% +</strong></span>
-          </div>
-        </div>
-        <div class="card cg">
-          <div class="card-t">플린 — 뷰티 커머스</div>
-          <div class="card-m">2021.10 – 2022.01 · 4개월 담당</div>
-          <ul>
-            <li>뷰티 브랜드 특성에 맞는 SA · DA 광고 운영</li>
-            <li>매체별 효율 분석 및 월간 리포팅</li>
-            <li>단기간 광고 셋업 및 안정적 운영 기반 구축</li>
-          </ul>
-          <div class="kpis">
-            <span class="kpi">SA · DA 운영</span>
-            <span class="kpi">뷰티 도메인</span>
-          </div>
-        </div>
+    </div>
+
+    <div class="brand-card">
+      <div class="brand-card-title">메디덴코 — 생애주기 치약</div>
+      <div class="brand-card-period">2022.01 – 2023.01 · 12개월 담당</div>
+      <ul>
+        <li>SA · DA · 오픈마켓(쿠팡·스마트스토어) 멀티 채널 동시 운영</li>
+        <li>채널별 효율 분석 및 예산 배분 최적화 제안</li>
+        <li>프로모션 기간 키워드·소재 별도 세팅으로 유입·전환 증대</li>
+      </ul>
+      <div class="brand-card-tags">
+        <span class="kpi-tag">KPI 월 매출 3,000만 원+</span>
+        <span class="kpi-tag">SA · DA · 오픈마켓</span>
+        <span class="kpi-tag">12개월</span>
+      </div>
+    </div>
+
+    <div class="brand-card">
+      <div class="brand-card-title">깊은바다 — 해양심층수</div>
+      <div class="brand-card-period">2023.01 – 2023.02 · 2개월 담당</div>
+      <ul>
+        <li>SA · DA 매체 운영 및 효율 분석</li>
+        <li>프로모션 기간 키워드·소재 별도 세팅으로 전환 증대</li>
+        <li>단기 집중 운영으로 목표 KPI 달성 및 운영 노하우 축적</li>
+      </ul>
+      <div class="brand-card-tags">
+        <span class="kpi-tag">KPI ROAS 200%+</span>
+      </div>
+    </div>
+
+    <div class="brand-card">
+      <div class="brand-card-title">플린 — 뷰티 커머스</div>
+      <div class="brand-card-period">2021.10 – 2022.01 · 4개월 담당</div>
+      <ul>
+        <li>뷰티 브랜드 특성에 맞는 SA · DA 광고 운영</li>
+        <li>매체별 효율 분석 및 월간 리포팅</li>
+        <li>단기간 광고 셋업 및 안정적 운영 기반 구축</li>
+      </ul>
+      <div class="brand-card-tags">
+        <span class="kpi-tag">SA · DA 운영</span>
+        <span class="kpi-tag">뷰티 도메인</span>
       </div>
     </div>
   </div>
 
-  <!-- 아이비알 -->
-  <div class="co-block">
-    <div class="co-head">
-      <div>
-        <div class="co-name">주식회사아이비알커머스</div>
-        <div class="co-sub">마케팅팀 · 퍼포먼스 마케터 (사원)</div>
-      </div>
-      <span class="co-period" style="color:var(--green)">2023.06 — 2023.09 · 4개월</span>
+  <div class="brand-section">
+    <div class="brand-section-header">
+      <h3>주식회사아이비알커머스</h3>
+      <div class="period">마케팅팀 · 퍼포먼스 마케터 (사원) · 2023.06 — 2023.09 · 4개월</div>
     </div>
-    <div class="co-body">
-      <div class="card cg">
-        <div class="card-t">브랜드 KPI 기반 멀티 매체 운영</div>
-        <div class="card-m">SA · DA · 오픈마켓 통합 운영 · 월간 보고 및 정산</div>
-        <ul>
-          <li>브랜드 KPI에 따른 SA · DA · 오픈마켓 매체 운영 및 효율 분석</li>
-          <li>월간 성과 보고서 작성 및 광고비 정산 업무 수행</li>
-        </ul>
+    <div class="brand-card">
+      <div class="brand-card-title">브랜드 KPI 기반 멀티 매체 운영</div>
+      <div class="brand-card-period">SA · DA · 오픈마켓 통합 운영 · 월간 보고 및 정산</div>
+      <ul>
+        <li>브랜드 KPI에 따른 SA · DA · 오픈마켓 매체 운영 및 효율 분석</li>
+        <li>월간 성과 보고서 작성 및 광고비 정산 업무 수행</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- MUSIC -->
+<section id="music">
+  <div class="section-header">
+    <span class="section-num">02 /</span>
+    <h2 class="section-title">엔터테인먼트 · 유통 실무</h2>
+    <span class="section-sub">Entertainment &amp; Distribution</span>
+  </div>
+
+  <div class="ent-summary">
+    <div class="ent-box">
+      <div class="ent-box-val">200<span> 건+</span></div>
+      <div class="ent-box-label">월 발매 검수 건수</div>
+    </div>
+    <div class="ent-box">
+      <div class="ent-box-val">95<span> 점+</span></div>
+      <div class="ent-box-label">Apple Music 스코어카드</div>
+    </div>
+    <div class="ent-box">
+      <div class="ent-box-val">3<span> 개+</span></div>
+      <div class="ent-box-label">대형 레이블 전담</div>
+    </div>
+  </div>
+
+  <div class="ent-blocks">
+    <div class="ent-block">
+      <div style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">(주)와이지플러스 · 디지털유통팀 · 음원유통 매니저 · 2023.10 — 현재</div>
+      <div class="ent-block-header">
+        <h3>K-POP 대형 레이블 광고·발매 협업</h3>
+        <div class="sub">더블랙레이블 · HYBE · VLAST 전담</div>
+      </div>
+      <ul>
+        <li>더블랙레이블 · HYBE · VLAST 등 대형 레이블 발매 프로젝트 전담 운영</li>
+        <li>레이블 요구사항 분석 후 DSP 정책과의 최적 조율 — 발매 오류 최소화</li>
+        <li>보안성·긴급성이 요구되는 발매에서 레이블 ↔ 플랫폼 간 실시간 커뮤니케이션 주도</li>
+        <li>멜론·지니·Apple Music·Spotify 등 국내외 플랫폼 담당자와 지속적 파트너십 유지</li>
+      </ul>
+      <div class="ent-block-tags">
+        <span class="ent-tag">대형 레이블 3개+ 전담</span>
+        <span class="ent-tag">긴급 이슈 즉각 대응</span>
+        <span class="ent-tag">국내외 DSP 파트너십</span>
+      </div>
+    </div>
+
+    <div class="ent-block">
+      <div class="ent-block-header">
+        <h3>데이터 정합성 관리 · 품질 운영</h3>
+        <div class="sub">월 200 건+ · Apple Music 95 점+</div>
+      </div>
+      <ul>
+        <li>Apple Music 스코어카드 연 평균 <strong style="color:var(--accent);">95점 이상</strong> 유지 — 정책 기반 전송 및 상시 모니터링</li>
+        <li>Spotify PPP 달성 티어 유지 수준의 정확한 프로덕트 전송 관리</li>
+        <li>월 평균 <strong style="color:var(--accent);">200건 이상</strong> 신·구보 메타데이터 정합성 검수 및 이력 관리</li>
+      </ul>
+      <div class="ent-block-tags">
+        <span class="ent-kpi">Apple Music 95점+</span>
+        <span class="ent-kpi">월 검수 200건+</span>
+        <span class="ent-tag">Spotify PPP 유지</span>
+      </div>
+    </div>
+
+    <div class="ent-block">
+      <div class="ent-block-header">
+        <h3>유통 시스템 고도화 · 문제 해결 주도</h3>
+        <div class="sub">DDEX 국제 표준 전환 · 시스템 개선 · 유관 부서 협업</div>
+      </div>
+      <ul>
+        <li>카카오 XML → DDEX 국제 표준 규격 전환 프로젝트 참여 — 데이터 매핑 정의 및 정합성 검증 수행</li>
+        <li>전송 시스템 고도화 과정에서 현업 Pain Point 기반 UI/UX 개선·오류 처리 요구사항 정의 및 피드백</li>
+        <li>시스템 전환 기간 발생 이슈에 대해 유관 부서와 즉각 소통하며 운영 공백 제로화</li>
+      </ul>
+      <div class="ent-block-tags">
+        <span class="ent-tag">DDEX 국제 표준 전환 실무</span>
+        <span class="ent-tag">요구사항 정의</span>
+        <span class="ent-tag">운영 공백 제로화</span>
       </div>
     </div>
   </div>
 </section>
 
-<!-- 02. 엔터·유통 실무 (음원유통 + 레이블 협업) -->
-<section class="section" id="music">
-  <div class="sec-hd">
-    <div class="sec-num">02 /</div>
-    <h2 class="sec-title">엔터테인먼트 · 유통 실무<em class="tag t-red">Entertainment & Distribution</em></h2>
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-header">
+    <span class="section-num">03 /</span>
+    <h2 class="section-title">보유 역량</h2>
+    <span class="section-sub">Skills</span>
   </div>
-
-  <!-- 강점 요약 배너 -->
-  <div style="background:var(--black);border-radius:14px;padding:28px 32px;margin-bottom:24px;display:flex;flex-wrap:wrap;gap:24px;align-items:center">
-    <div style="flex:1;min-width:200px">
-      <div style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#888;margin-bottom:8px">엔터 업계 강점 요약</div>
-      <div style="font-family:'Noto Serif KR',serif;font-weight:700;font-size:20px;color:#fff;line-height:1.5">K-POP 레이블 직접 협업 경험<br>광고·유통 비즈니스 통합 이해</div>
-    </div>
-    <div style="display:flex;gap:16px;flex-wrap:wrap">
-      <div style="text-align:center;padding:16px 20px;border:1px solid #333;border-radius:10px">
-        <div style="font-family:'Noto Serif KR',serif;font-weight:900;font-size:32px;color:#fff"><span style="color:var(--red)">200 건+</span></div>
-        <div style="font-family:'DM Mono',monospace;font-size:10px;color:#888;margin-top:4px;letter-spacing:.08em">월 발매 검수 건수</div>
-      </div>
-      <div style="text-align:center;padding:16px 20px;border:1px solid #333;border-radius:10px">
-        <div style="font-family:'Noto Serif KR',serif;font-weight:900;font-size:32px;color:#fff"><span style="color:var(--red)">95 점+</span></div>
-        <div style="font-family:'DM Mono',monospace;font-size:10px;color:#888;margin-top:4px;letter-spacing:.08em">Apple Music 스코어카드</div>
-      </div>
-      <div style="text-align:center;padding:16px 20px;border:1px solid #333;border-radius:10px">
-        <div style="font-family:'Noto Serif KR',serif;font-weight:900;font-size:32px;color:#fff"><span style="color:var(--red)">3 개+</span></div>
-        <div style="font-family:'DM Mono',monospace;font-size:10px;color:#888;margin-top:4px;letter-spacing:.08em">대형 레이블 전담</div>
+  <div class="skills-grid">
+    <div class="skill-block">
+      <h4>광고 · 마케팅 실무</h4>
+      <div class="skill-chips">
+        <span class="chip">네이버 SA</span>
+        <span class="chip">GDN (구글 디스플레이)</span>
+        <span class="chip">카카오 DA</span>
+        <span class="chip">오픈마켓 (쿠팡 · 스마트스토어)</span>
+        <span class="chip">ROAS / 전환 최적화</span>
+        <span class="chip">키워드 전략</span>
+        <span class="chip">소재 기획</span>
+        <span class="chip">광고비 정산 · 월간 보고</span>
       </div>
     </div>
-  </div>
-
-  <div class="co-block">
-    <div class="co-head">
-      <div>
-        <div class="co-name">(주)와이지플러스</div>
-        <div class="co-sub">디지털유통팀 · 음원유통 매니저</div>
+    <div class="skill-block">
+      <h4>엔터테인먼트 · 파트너 커뮤니케이션</h4>
+      <div class="skill-chips">
+        <span class="chip">K-POP 레이블 협업</span>
+        <span class="chip">국내외 DSP 운영</span>
+        <span class="chip">대내외 커뮤니케이션</span>
+        <span class="chip">Apple Music · Spotify</span>
+        <span class="chip">멜론 · 지니</span>
+        <span class="chip">발매 프로세스 관리</span>
+        <span class="chip">긴급 이슈 대응</span>
       </div>
-      <span class="co-period" style="color:var(--red)">2023.10 — 현재 · 재직중</span>
     </div>
-    <div class="co-body">
-      <div class="grid2" style="margin-bottom:18px">
-        <div class="card cr">
-          <div class="card-t">K-POP 대형 레이블 광고·발매 협업</div>
-          <div class="card-m">더블랙레이블 · HYBE · VLAST 전담</div>
-          <ul>
-            <li>더블랙레이블 · HYBE · VLAST 등 대형 레이블 발매 프로젝트 전담 운영</li>
-            <li>레이블 요구사항 분석 후 DSP 정책과의 최적 조율 — 발매 오류 최소화</li>
-            <li>보안성·긴급성이 요구되는 발매에서 레이블 ↔ 플랫폼 간 실시간 커뮤니케이션 주도</li>
-            <li>멜론·지니·Apple Music·Spotify 등 국내외 플랫폼 담당자와 지속적 파트너십 유지</li>
-          </ul>
-          <div class="kpis">
-            <span class="kpi">대형 레이블 3 개+ 전담</span>
-            <span class="kpi">긴급 이슈 즉각 대응</span>
-            <span class="kpi">국내외 DSP 파트너십</span>
-          </div>
-        </div>
-        <div class="card cr">
-          <div class="card-t">데이터 정합성 관리 · 품질 운영</div>
-          <div class="card-m">월 200 건+ · Apple Music 95 점+</div>
-          <ul>
-            <li>Apple Music 스코어카드 연 평균 <strong>95점 이상</strong> 유지 — 정책 기반 전송 및 상시 모니터링</li>
-            <li>Spotify PPP 달성 티어 유지 수준의 정확한 프로덕트 전송 관리</li>
-            <li>월 평균 <strong>200건 이상</strong> 신·구보 메타데이터 정합성 검수 및 이력 관리</li>
-          </ul>
-          <div class="kpis">
-            <span class="kpi">Apple Music <strong>95 점+</strong></span>
-            <span class="kpi">월 검수 <strong>200 건+</strong></span>
-            <span class="kpi">Spotify PPP 유지</span>
-          </div>
-        </div>
+    <div class="skill-block">
+      <h4>데이터 · 분석</h4>
+      <div class="skill-chips">
+        <span class="chip">Google Analytics (GAIQ)</span>
+        <span class="chip">SQL</span>
+        <span class="chip">SPSS</span>
+        <span class="chip">Excel</span>
+        <span class="chip">데이터 정합성 검증</span>
+        <span class="chip">성과 분석 리포팅</span>
+        <span class="chip">문제 해결 · 분석적 사고</span>
       </div>
-      <div class="card cr">
-        <div class="card-t">유통 시스템 고도화 · 문제 해결 주도</div>
-        <div class="card-m">DDEX 국제 표준 전환 · 시스템 개선 · 유관 부서 협업</div>
-        <ul>
-          <li>카카오 XML → DDEX 국제 표준 규격 전환 프로젝트 참여 — 데이터 매핑 정의 및 정합성 검증 수행</li>
-          <li>전송 시스템 고도화 과정에서 현업 Pain Point 기반 UI/UX 개선·오류 처리 요구사항 정의 및 피드백</li>
-          <li>시스템 전환 기간 발생 이슈에 대해 유관 부서와 즉각 소통하며 운영 공백 제로화</li>
-        </ul>
-        <div class="kpis">
-          <span class="kpi">DDEX 국제 표준 전환</span>
-          <span class="kpi">실무 요구사항 정의</span>
-          <span class="kpi">운영 공백 제로화</span>
-        </div>
+    </div>
+    <div class="skill-block">
+      <h4>자격증 · 어학</h4>
+      <div class="cert-row">
+        <div class="cert-item"><strong>TOEIC Speaking IH</strong>영어 공인시험 · 2026.04</div>
+        <div class="cert-item"><strong>SQL 개발자</strong>한국데이터산업진흥원 · 2023.07</div>
+        <div class="cert-item"><strong>GAIQ</strong>Google · 2021.07</div>
+        <div class="cert-item"><strong>사회조사분석사 2급</strong>한국산업인력공단 · 2019.05</div>
+        <div class="cert-item"><strong>전자상거래 수출마스터 2급</strong>카페24 · 2019.05</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- 03. 역량 & 스킬 -->
-<section class="section" id="skills">
-  <div class="sec-hd">
-    <div class="sec-num">03 /</div>
-    <h2 class="sec-title">보유 역량<em class="tag t-gold">Skills</em></h2>
-  </div>
-  <div class="skill-groups">
-    <div>
-      <div class="sg-title">광고 · 마케팅 실무</div>
-      <div class="pills">
-        <span class="pill pill-s">네이버 SA</span>
-        <span class="pill pill-s">GDN (구글 디스플레이)</span>
-        <span class="pill pill-s">카카오 DA</span>
-        <span class="pill">오픈마켓 (쿠팡 · 스마트스토어)</span>
-        <span class="pill">ROAS / 전환 최적화</span>
-        <span class="pill">키워드 전략</span>
-        <span class="pill">소재 기획</span>
-        <span class="pill">광고비 정산 · 월간 보고</span>
-      </div>
-    </div>
-    <div>
-      <div class="sg-title">엔터테인먼트 · 파트너 커뮤니케이션</div>
-      <div class="pills">
-        <span class="pill pill-s">K-POP 레이블 협업</span>
-        <span class="pill pill-s">국내외 DSP 운영</span>
-        <span class="pill pill-s">대내외 커뮤니케이션</span>
-        <span class="pill">Apple Music · Spotify</span>
-        <span class="pill">멜론 · 지니</span>
-        <span class="pill">발매 프로세스 관리</span>
-        <span class="pill">긴급 이슈 대응</span>
-      </div>
-    </div>
-    <div>
-      <div class="sg-title">데이터 · 분석</div>
-      <div class="pills">
-        <span class="pill pill-s">Google Analytics (GAIQ)</span>
-        <span class="pill pill-s">SQL</span>
-        <span class="pill pill-s">SPSS</span>
-        <span class="pill">Excel</span>
-        <span class="pill">데이터 정합성 검증</span>
-        <span class="pill">성과 분석 리포팅</span>
-        <span class="pill">문제 해결 · 분석적 사고</span>
-      </div>
-    </div>
-    <div>
-      <div class="sg-title">문서 · 툴</div>
-      <div class="pills">
-        <span class="pill">PowerPoint</span>
-        <span class="pill">Word · Excel</span>
-        <span class="pill">Photoshop</span>
-        <span class="pill">Cafe24</span>
-        <span class="pill">DDEX 국제 표준</span>
-        <span class="pill">꼼꼼함 · 책임감</span>
-      </div>
-    </div>
-  </div>
-
-  <div class="div">
-    <div class="div-line"></div>
-    <div class="div-label">Certifications & Language</div>
-    <div class="div-line"></div>
-  </div>
-  <div class="cert-grid">
-    <div class="cert">
-      <div class="cert-n">TOEIC Speaking <span style="color:var(--blue);font-weight:700">IH</span></div>
-      <div class="cert-i">영어 공인시험 · 2026.04 · 우대사항 충족</div>
-    </div>
-    <div class="cert">
-      <div class="cert-n">SQL 개발자</div>
-      <div class="cert-i">한국데이터산업진흥원 · 2023.07</div>
-    </div>
-    <div class="cert">
-      <div class="cert-n">GAIQ</div>
-      <div class="cert-i">Google · 2021.07</div>
-    </div>
-    <div class="cert">
-      <div class="cert-n">사회조사분석사 2급</div>
-      <div class="cert-i">한국산업인력공단 · 2019.05</div>
-    </div>
-    <div class="cert">
-      <div class="cert-n">전자상거래 수출마스터 2급</div>
-      <div class="cert-i">카페24 · 2019.05</div>
-    </div>
-  </div>
-</section>
-
-
+<!-- FOOTER -->
 <footer>
-  <span>Portfolio · 2026</span>
-  <span>스타쉽엔터테인먼트 광고사업본부 지원</span>
+  <div class="footer-logo">Portfolio · 2026</div>
+  <div class="footer-copy">© 2026 All rights reserved.</div>
 </footer>
 
-<script>
-  const links = document.querySelectorAll('nav a');
-  const anchors = [...document.querySelectorAll('[id]')];
-  window.addEventListener('scroll', () => {
-    let cur = '';
-    anchors.forEach(el => { if (window.scrollY >= el.offsetTop - 120) cur = el.id; });
-    links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + cur));
-  }, { passive: true });
-</script>
 </body>
 </html>
