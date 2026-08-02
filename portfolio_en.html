@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hong Soojeong · Portfolio 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0d0d0d;
+      --surface: #161616;
+      --surface2: #1f1f1f;
+      --border: #2a2a2a;
+      --text: #e8e8e8;
+      --text-muted: #888;
+      --accent: #c8a96e;
+      --accent2: #7eb8a4;
+      --white: #fff;
+      --font-sans: 'Inter', 'Noto Sans KR', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: var(--font-sans); font-size: 15px; line-height: 1.7; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 48px; height: 56px;
+      background: rgba(13,13,13,.92); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo { font-size: 13px; letter-spacing: .12em; color: var(--accent); font-weight: 500; text-transform: uppercase; }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 13px; letter-spacing: .06em; transition: color .2s; }
+    .nav-links a:hover { color: var(--white); }
+
+    /* HERO */
+    #hero {
+      min-height: 100vh; display: flex; flex-direction: column; justify-content: center;
+      padding: 120px 48px 80px; max-width: 1100px; margin: 0 auto;
+    }
+    .hero-eyebrow { font-size: 12px; letter-spacing: .18em; color: var(--accent); text-transform: uppercase; margin-bottom: 28px; }
+    .hero-title { font-size: clamp(32px, 5vw, 64px); font-weight: 700; line-height: 1.15; color: var(--white); margin-bottom: 32px; }
+    .hero-title em { font-style: normal; color: var(--accent); }
+    .hero-desc { font-size: 16px; color: var(--text-muted); max-width: 640px; line-height: 1.8; margin-bottom: 48px; }
+    .hero-meta { font-size: 13px; color: var(--text-muted); margin-bottom: 56px; border-left: 2px solid var(--accent); padding-left: 16px; }
+
+    .hero-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 56px; }
+    .tag { padding: 6px 14px; border: 1px solid var(--border); border-radius: 4px; font-size: 12px; letter-spacing: .05em; color: var(--text-muted); }
+
+    .hero-stats { display: flex; gap: 48px; }
+    .stat-val { font-size: 36px; font-weight: 700; color: var(--accent); }
+    .stat-val span { color: var(--accent); }
+    .stat-label { font-size: 12px; color: var(--text-muted); margin-top: 4px; letter-spacing: .04em; }
+
+    /* CAREER */
+    #career { padding: 80px 48px; max-width: 1100px; margin: 0 auto; }
+    .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 48px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+    .section-num { font-size: 12px; color: var(--accent); letter-spacing: .1em; font-weight: 600; }
+    .section-title { font-size: 28px; font-weight: 700; color: var(--white); }
+    .section-sub { font-size: 13px; color: var(--text-muted); letter-spacing: .08em; margin-left: auto; }
+
+    .career-list { display: flex; flex-direction: column; gap: 0; }
+    .career-item { display: grid; grid-template-columns: 200px 1fr; gap: 32px; padding: 32px 0; border-bottom: 1px solid var(--border); }
+    .career-date { font-size: 13px; color: var(--text-muted); }
+    .career-date .badge { display: inline-block; font-size: 11px; padding: 2px 8px; border: 1px solid var(--accent); color: var(--accent); border-radius: 3px; margin-bottom: 8px; letter-spacing: .06em; }
+    .career-info h3 { font-size: 17px; font-weight: 600; color: var(--white); margin-bottom: 4px; }
+    .career-info .role { font-size: 13px; color: var(--text-muted); margin-bottom: 12px; }
+    .career-info ul { padding-left: 16px; }
+    .career-info li { font-size: 14px; color: var(--text-muted); margin-bottom: 6px; }
+
+    /* PERF */
+    #perf { padding: 80px 48px; max-width: 1100px; margin: 0 auto; background: none; }
+
+    .ad-summary { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-bottom: 48px; background: var(--border); }
+    .ad-box { background: var(--surface); padding: 28px 24px; }
+    .ad-box-val { font-size: 28px; font-weight: 700; color: var(--accent); }
+    .ad-box-val span { color: var(--accent); }
+    .ad-box-label { font-size: 12px; color: var(--text-muted); margin-top: 6px; }
+
+    .brand-section { margin-bottom: 48px; }
+    .brand-section-header { margin-bottom: 24px; border-left: 3px solid var(--accent); padding-left: 16px; }
+    .brand-section-header h3 { font-size: 17px; font-weight: 600; color: var(--white); }
+    .brand-section-header .period { font-size: 13px; color: var(--text-muted); margin-top: 2px; }
+
+    .brand-card { background: var(--surface); border: 1px solid var(--border); padding: 24px 28px; margin-bottom: 16px; }
+    .brand-card-title { font-size: 15px; font-weight: 600; color: var(--white); margin-bottom: 4px; }
+    .brand-card-period { font-size: 12px; color: var(--accent); margin-bottom: 12px; }
+    .brand-card ul { padding-left: 16px; }
+    .brand-card li { font-size: 14px; color: var(--text-muted); margin-bottom: 6px; }
+    .brand-card-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+    .kpi-tag { font-size: 11px; padding: 4px 10px; background: rgba(200,169,110,.12); border: 1px solid rgba(200,169,110,.3); color: var(--accent); border-radius: 3px; letter-spacing: .04em; }
+
+    /* MUSIC */
+    #music { padding: 80px 48px; max-width: 1100px; margin: 0 auto; }
+    #pm { padding: 80px 48px; max-width: 1100px; margin: 0 auto; }
+
+    .ent-summary { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-bottom: 48px; background: var(--border); }
+    .ent-box { background: var(--surface); padding: 28px 24px; }
+    .ent-box-val { font-size: 28px; font-weight: 700; color: var(--accent2); }
+    .ent-box-val span { color: var(--accent2); }
+    .ent-box-label { font-size: 12px; color: var(--text-muted); margin-top: 6px; }
+
+    .ent-blocks { display: flex; flex-direction: column; gap: 0; }
+    .ent-block { padding: 32px 0; border-bottom: 1px solid var(--border); }
+    .ent-block-header { margin-bottom: 16px; border-left: 3px solid var(--accent2); padding-left: 16px; }
+    .ent-block-header h3 { font-size: 17px; font-weight: 600; color: var(--white); }
+    .ent-block-header .sub { font-size: 13px; color: var(--text-muted); margin-top: 2px; }
+    .ent-block ul { padding-left: 16px; }
+    .ent-block li { font-size: 14px; color: var(--text-muted); margin-bottom: 6px; }
+    .ent-block-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+    .ent-tag { font-size: 11px; padding: 4px 10px; background: rgba(126,184,164,.1); border: 1px solid rgba(126,184,164,.3); color: var(--accent2); border-radius: 3px; letter-spacing: .04em; }
+    .ent-kpi { font-size: 11px; padding: 4px 10px; background: rgba(126,184,164,.1); border: 1px solid rgba(126,184,164,.3); color: var(--accent2); border-radius: 3px; letter-spacing: .04em; }
+
+    /* SKILLS */
+    #skills { padding: 80px 48px; max-width: 1100px; margin: 0 auto; }
+    .skills-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; background: var(--border); }
+    .skill-block { background: var(--surface); padding: 28px 24px; }
+    .skill-block h4 { font-size: 13px; font-weight: 600; color: var(--text-muted); letter-spacing: .08em; text-transform: uppercase; margin-bottom: 16px; }
+    .skill-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chip { font-size: 12px; padding: 5px 12px; background: var(--surface2); border: 1px solid var(--border); color: var(--text); border-radius: 3px; }
+    .cert-row { display: flex; flex-direction: column; gap: 10px; }
+    .cert-item { font-size: 13px; color: var(--text-muted); }
+    .cert-item strong { color: var(--white); display: block; }
+
+    /* FOOTER */
+    footer {
+      padding: 40px 48px; border-top: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .footer-logo { font-size: 13px; letter-spacing: .12em; color: var(--accent); font-weight: 500; text-transform: uppercase; }
+    .footer-copy { font-size: 12px; color: var(--text-muted); }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 20px; }
+      .nav-links { gap: 16px; }
+      #hero, #career, #perf, #music, #pm, #skills { padding: 60px 20px; }
+      .career-item { grid-template-columns: 1fr; gap: 8px; }
+      .hero-stats { flex-wrap: wrap; gap: 28px; }
+      .ad-summary, .ent-summary { grid-template-columns: 1fr; }
+      .skills-grid { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 12px; align-items: flex-start; padding: 32px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Hong Soojeong · Portfolio 2026</div>
+  <ul class="nav-links">
+    <li><a href="#hero">Intro</a></li>
+    <li><a href="#career">Career</a></li>
+    <li><a href="#perf">Ad & Marketing</a></li>
+    <li><a href="#music">Distribution</a></li>
+    <li><a href="#pm">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <p class="hero-eyebrow">Portfolio · 2026 · ~4 Years 8 Months of Experience</p>
+  <h1 class="hero-title">Understanding the Entertainment Industry,<br/><em>Executing with Data</em></h1>
+  <p class="hero-desc">With a strong data sensibility and PM experience built on the ground in music distribution, I have developed a deep understanding of how the entertainment business operates. From defining requirements across labels, platforms, and development teams to coordinating complex projects end-to-end — I deliver results through data-driven analysis and proactive communication.</p>
+  <p class="hero-meta">Dankook University, B.S. Applied Statistics (Minor in Economics) · TOEIC Speaking IH · SQLD · GAIQ</p>
+  <div class="hero-tags">
+    <span class="tag">Music Distribution</span>
+    <span class="tag">Ad Media Operations</span>
+    <span class="tag">Data Analysis</span>
+    <span class="tag">K-POP Label Collaboration</span>
+    <span class="tag">SA · DA Campaigns</span>
+    <span class="tag">TOEIC Speaking IH</span>
+    <span class="tag">SQL · GAIQ</span>
+  </div>
+  <div class="hero-stats">
+    <div>
+      <div class="stat-val">200<span>+</span></div>
+      <div class="stat-label">Monthly metadata QC reviews</div>
+    </div>
+    <div>
+      <div class="stat-val">ROAS 1,000<span>%+</span></div>
+      <div class="stat-label">Performance marketing KPI target</div>
+    </div>
+    <div>
+      <div class="stat-val">95<span>pts+</span></div>
+      <div class="stat-label">Apple Music scorecard annual avg.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CAREER -->
+<section id="career">
+  <div class="section-header">
+    <span class="section-num">00 /</span>
+    <h2 class="section-title">Career Summary</h2>
+    <span class="section-sub">Career</span>
+  </div>
+  <div class="career-list">
+    <div class="career-item">
+      <div class="career-date">
+        <div class="badge">Current</div>
+        <div>Oct 2023 — Present</div>
+      </div>
+      <div class="career-info">
+        <h3>YG PLUS Inc.</h3>
+        <div class="role">Digital Distribution Team · Music Distribution Manager</div>
+        <ul>
+          <li>Managed end-to-end domestic and international platform distribution, release systems, and metadata integrity</li>
+          <li>Handled release processes for major labels including THE BLACK LABEL, HYBE, and VLAST</li>
+          <li>Maintained Apple Music scorecard annual average of 95+ points</li>
+          <li>Maintained Spotify Preferred Partner Program (PPP) tier</li>
+          <li>Participated in Kakao XML → DDEX international standard migration project and system enhancement</li>
+          <li>Participated in WAPL 2.0 page build — requirements definition and Dev/QA collaboration</li>
+          <li>Participated in Feat. page build as PM — led process design through service launch</li>
+        </ul>
+      </div>
+    </div>
+    <div class="career-item">
+      <div class="career-date">
+        <div>Jun 2023 — Sep 2023</div>
+        <div style="font-size:12px;color:var(--text-muted);margin-top:4px;">4 months</div>
+      </div>
+      <div class="career-info">
+        <h3>IBR Commerce Co., Ltd.</h3>
+        <div class="role">Marketing Team · Performance Marketer</div>
+        <ul>
+          <li>Operated SA, DA, and open marketplace channels based on brand KPIs; analyzed campaign efficiency</li>
+          <li>Prepared monthly performance reports and managed ad spend reconciliation</li>
+        </ul>
+      </div>
+    </div>
+    <div class="career-item">
+      <div class="career-date">
+        <div>Oct 2021 — May 2023</div>
+        <div style="font-size:12px;color:var(--text-muted);margin-top:4px;">1 yr 8 mos</div>
+      </div>
+      <div class="career-info">
+        <h3>BnR Communications Co., Ltd.</h3>
+        <div class="role">PM1 Team · Performance Marketer</div>
+        <ul>
+          <li>Managed multi-brand SA/DA campaigns across Shumaker (16 mos), Medidenco (12 mos), Deep Sea, and Flin</li>
+          <li>Developed KPI-based media strategies; handled monthly reporting and billing</li>
+          <li>Drove conversion growth through dedicated keyword/creative/ad group setups during promotional periods</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PERF -->
+<section id="perf">
+  <div class="section-header">
+    <span class="section-num">01 /</span>
+    <h2 class="section-title">Ad & Performance Marketing</h2>
+    <span class="section-sub">Ad &amp; Performance</span>
+  </div>
+
+  <div class="ad-summary">
+    <div class="ad-box">
+      <div class="ad-box-val">4<span> brands+</span></div>
+      <div class="ad-box-label">Simultaneous brand management</div>
+    </div>
+    <div class="ad-box">
+      <div class="ad-box-val">ROAS <span>1,000%+</span></div>
+      <div class="ad-box-label">KPI target achieved</div>
+    </div>
+    <div class="ad-box">
+      <div class="ad-box-val">2<span> yrs+</span></div>
+      <div class="ad-box-label">Ad operations experience</div>
+    </div>
+  </div>
+
+  <div class="brand-section">
+    <div class="brand-section-header">
+      <h3>BnR Communications Co., Ltd.</h3>
+      <div class="period">PM1 Team · Performance Marketer · Oct 2021 — May 2023 · 1 yr 8 mos</div>
+    </div>
+
+    <div class="brand-card">
+      <div class="brand-card-title">Shumaker — Multi-brand Shoe Retailer</div>
+      <div class="brand-card-period">Nov 2021 – Feb 2023 · 16 months</div>
+      <ul>
+        <li>Operated Naver SA, GDN, and Kakao DA across multiple channels; delivered weekly and monthly efficiency reports</li>
+        <li>Proposed monthly SA/DA strategy adjustments based on performance data and emerging issues</li>
+        <li>Boosted conversion rates during promotions via dedicated keyword, creative, and ad group setups</li>
+      </ul>
+      <div class="brand-card-tags">
+        <span class="kpi-tag">KPI ROAS 1,000%+</span>
+        <span class="kpi-tag">SA · DA Multi-channel</span>
+        <span class="kpi-tag">16 months</span>
+      </div>
+    </div>
+
+    <div class="brand-card">
+      <div class="brand-card-title">Medidenco — Life-stage Toothpaste Brand</div>
+      <div class="brand-card-period">Jan 2022 – Jan 2023 · 12 months</div>
+      <ul>
+        <li>Simultaneously operated SA, DA, and open marketplaces (Coupang, Naver Smart Store)</li>
+        <li>Analyzed per-channel efficiency and proposed optimized budget allocation</li>
+        <li>Increased traffic and conversions during promotions with dedicated keyword and creative setups</li>
+      </ul>
+      <div class="brand-card-tags">
+        <span class="kpi-tag">KPI Monthly Revenue ₩30M+</span>
+        <span class="kpi-tag">SA · DA · Marketplace</span>
+        <span class="kpi-tag">12 months</span>
+      </div>
+    </div>
+
+    <div class="brand-card">
+      <div class="brand-card-title">Deep Sea — Deep Ocean Water Brand</div>
+      <div class="brand-card-period">Jan 2023 – Feb 2023 · 2 months</div>
+      <ul>
+        <li>Operated SA and DA channels and analyzed campaign efficiency</li>
+        <li>Drove conversions during promotional periods with dedicated keyword and creative setups</li>
+        <li>Achieved target KPI through focused short-term campaign management</li>
+      </ul>
+      <div class="brand-card-tags">
+        <span class="kpi-tag">KPI ROAS 200%+</span>
+      </div>
+    </div>
+
+    <div class="brand-card">
+      <div class="brand-card-title">Flin — Beauty E-commerce</div>
+      <div class="brand-card-period">Oct 2021 – Jan 2022 · 4 months</div>
+      <ul>
+        <li>Operated SA and DA campaigns tailored to beauty brand characteristics</li>
+        <li>Conducted per-channel efficiency analysis and monthly reporting</li>
+        <li>Established a stable campaign foundation within a short onboarding period</li>
+      </ul>
+      <div class="brand-card-tags">
+        <span class="kpi-tag">SA · DA Operations</span>
+        <span class="kpi-tag">Beauty Domain</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="brand-section">
+    <div class="brand-section-header">
+      <h3>IBR Commerce Co., Ltd.</h3>
+      <div class="period">Marketing Team · Performance Marketer · Jun 2023 — Sep 2023 · 4 months</div>
+    </div>
+    <div class="brand-card">
+      <div class="brand-card-title">KPI-driven Multi-channel Campaign Management</div>
+      <div class="brand-card-period">SA · DA · Open Marketplace · Monthly Reporting & Reconciliation</div>
+      <ul>
+        <li>Operated SA, DA, and open marketplace channels aligned with brand KPIs; conducted efficiency analysis</li>
+        <li>Prepared monthly performance reports and handled ad spend reconciliation</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- MUSIC -->
+<section id="music">
+  <div class="section-header">
+    <span class="section-num">02 /</span>
+    <h2 class="section-title">Entertainment & Distribution</h2>
+    <span class="section-sub">Entertainment &amp; Distribution</span>
+  </div>
+
+  <div class="ent-summary">
+    <div class="ent-box">
+      <div class="ent-box-val">200<span>+</span></div>
+      <div class="ent-box-label">Monthly release QC reviews</div>
+    </div>
+    <div class="ent-box">
+      <div class="ent-box-val">95<span>pts+</span></div>
+      <div class="ent-box-label">Apple Music scorecard</div>
+    </div>
+    <div class="ent-box">
+      <div class="ent-box-val">3<span>+</span></div>
+      <div class="ent-box-label">Major labels managed</div>
+    </div>
+  </div>
+
+  <div class="ent-blocks">
+    <div class="ent-block">
+      <div style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">YG PLUS Inc. · Digital Distribution Team · Music Distribution Manager · Oct 2023 — Present</div>
+      <div class="ent-block-header">
+        <h3>K-POP Major Label Release Collaboration</h3>
+        <div class="sub">THE BLACK LABEL · HYBE · VLAST — Dedicated Account Management</div>
+      </div>
+      <ul>
+        <li>Dedicated management of release projects for major labels including THE BLACK LABEL, HYBE, and VLAST</li>
+        <li>Analyzed label requirements and coordinated with DSP policies to minimize release errors</li>
+        <li>Led real-time communication between labels and platforms for security-sensitive and time-critical releases</li>
+        <li>Maintained ongoing partnerships with domestic and international platform representatives (Melon, Genie, Apple Music, Spotify)</li>
+      </ul>
+      <div class="ent-block-tags">
+        <span class="ent-tag">3+ Major Labels</span>
+        <span class="ent-tag">Urgent Issue Response</span>
+        <span class="ent-tag">Global DSP Partnerships</span>
+      </div>
+    </div>
+
+    <div class="ent-block">
+      <div class="ent-block-header">
+        <h3>Data Integrity Management & Quality Operations</h3>
+        <div class="sub">200+ Monthly Reviews · Apple Music 95pts+</div>
+      </div>
+      <ul>
+        <li>Maintained Apple Music scorecard annual average of <strong style="color:var(--accent2);">95+ points</strong> through policy-compliant delivery and continuous monitoring</li>
+        <li>Managed accurate product delivery to sustain Spotify Preferred Partner Program (PPP) tier status</li>
+        <li>Reviewed and managed metadata integrity for an average of <strong style="color:var(--accent2);">200+ new and catalog releases per month</strong></li>
+      </ul>
+      <div class="ent-block-tags">
+        <span class="ent-kpi">Apple Music 95pts+</span>
+        <span class="ent-kpi">200+ Monthly QC Reviews</span>
+        <span class="ent-tag">Spotify PPP Maintained</span>
+      </div>
+    </div>
+
+    <div class="ent-block">
+      <div class="ent-block-header">
+        <h3>Distribution System Enhancement & Problem Solving</h3>
+        <div class="sub">DDEX Migration · System Improvement · Cross-functional Collaboration</div>
+      </div>
+      <ul>
+        <li>Participated in Kakao XML → DDEX international standard migration — defined data mapping and validated integrity</li>
+        <li>Identified operational pain points during system upgrade; defined UI/UX improvement and error-handling requirements</li>
+        <li>Coordinated immediately with cross-functional teams during migration to achieve zero operational downtime</li>
+      </ul>
+      <div class="ent-block-tags">
+        <span class="ent-tag">DDEX Migration</span>
+        <span class="ent-tag">Requirements Definition</span>
+        <span class="ent-tag">Zero Operational Downtime</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PM -->
+<section id="pm">
+  <div class="section-header">
+    <span class="section-num">03 /</span>
+    <h2 class="section-title">Project & System Planning</h2>
+    <span class="section-sub">Project Management</span>
+  </div>
+
+  <div class="ent-blocks">
+    <div class="ent-block">
+      <div style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">YG PLUS Inc. · Digital Distribution Team · Music Distribution Manager · Oct 2023 — Present</div>
+      <div class="ent-block-header">
+        <h3>WAPL 2.0 Build</h3>
+        <div class="sub">Music Registration Process Improvement · Internal System Integration</div>
+      </div>
+      <ul>
+        <li>Identified pain points and improvement opportunities from WAPL 1.0 operational experience</li>
+        <li>Analyzed inefficiencies in the existing registration process and defined requirements</li>
+        <li>Planned a new registration process aligned with the integrated internal system policy</li>
+        <li>Continuously identified and resolved errors through active release testing</li>
+        <li>Collaborated with development and QA teams to stabilize the system and improve quality</li>
+      </ul>
+      <div class="ent-block-tags">
+        <span class="ent-tag">Requirements Definition</span>
+        <span class="ent-tag">Process Planning</span>
+        <span class="ent-tag">Dev · QA Collaboration</span>
+        <span class="ent-tag">System Stabilization</span>
+        <span class="ent-tag">Operational Efficiency</span>
+      </div>
+    </div>
+
+    <div class="ent-block">
+      <div class="ent-block-header">
+        <h3>Feat. Build — Label Self-registration System</h3>
+        <div class="sub">PM Role · Process Design through Service Launch</div>
+      </div>
+      <ul>
+        <li>Analyzed the existing music registration process and identified bottlenecks</li>
+        <li>Gathered and organized requirements from the distribution operations team and labels</li>
+        <li>Designed the music registration UI and QC review process</li>
+        <li>Defined input rules and validation logic reflecting DSP policies</li>
+        <li>Collaborated with development, QA, and operations teams to build and launch the service</li>
+      </ul>
+      <div class="ent-block-tags">
+        <span class="ent-kpi">Reduced Registration Workload</span>
+        <span class="ent-kpi">Improved Metadata Accuracy</span>
+        <span class="ent-tag">Validation Design</span>
+        <span class="ent-tag">Requirements Gathering</span>
+        <span class="ent-tag">Service Planning & Launch</span>
+        <span class="ent-tag">Lead Time Improvement</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-header">
+    <span class="section-num">04 /</span>
+    <h2 class="section-title">Skills & Qualifications</h2>
+    <span class="section-sub">Skills</span>
+  </div>
+  <div class="skills-grid">
+    <div class="skill-block">
+      <h4>Ad & Marketing Operations</h4>
+      <div class="skill-chips">
+        <span class="chip">Naver SA</span>
+        <span class="chip">Google Display Network</span>
+        <span class="chip">Kakao DA</span>
+        <span class="chip">Coupang · Naver Smart Store</span>
+        <span class="chip">ROAS / Conversion Optimization</span>
+        <span class="chip">Keyword Strategy</span>
+        <span class="chip">Creative Planning</span>
+        <span class="chip">Ad Spend Reporting</span>
+      </div>
+    </div>
+    <div class="skill-block">
+      <h4>Project & System Planning (PM)</h4>
+      <div class="skill-chips">
+        <span class="chip">Requirements Definition</span>
+        <span class="chip">Process Planning</span>
+        <span class="chip">Validation Design</span>
+        <span class="chip">Dev · QA Collaboration</span>
+        <span class="chip">Bottleneck Analysis</span>
+        <span class="chip">Service Launch</span>
+        <span class="chip">Operational Efficiency</span>
+        <span class="chip">Stakeholder Communication</span>
+      </div>
+    </div>
+    <div class="skill-block">
+      <h4>Entertainment & Partner Communication</h4>
+      <div class="skill-chips">
+        <span class="chip">K-POP Label Collaboration</span>
+        <span class="chip">Global DSP Operations</span>
+        <span class="chip">Cross-functional Communication</span>
+        <span class="chip">Apple Music · Spotify</span>
+        <span class="chip">Melon · Genie</span>
+        <span class="chip">Release Process Management</span>
+        <span class="chip">Urgent Issue Response</span>
+      </div>
+    </div>
+    <div class="skill-block">
+      <h4>Data & Analysis</h4>
+      <div class="skill-chips">
+        <span class="chip">Google Analytics (GAIQ)</span>
+        <span class="chip">SQL (SQLD Certified)</span>
+        <span class="chip">SPSS</span>
+        <span class="chip">Excel</span>
+        <span class="chip">Data Integrity Validation</span>
+        <span class="chip">Performance Reporting</span>
+        <span class="chip">Analytical Problem Solving</span>
+      </div>
+    </div>
+    <div class="skill-block">
+      <h4>Certifications & Language</h4>
+      <div class="cert-row">
+        <div class="cert-item"><strong>TOEIC Speaking IH</strong>English Proficiency · Apr 2026</div>
+        <div class="cert-item"><strong>SQL Developer (SQLD)</strong>Korea Data Agency · Jul 2023</div>
+        <div class="cert-item"><strong>GAIQ</strong>Google Analytics · Jul 2021</div>
+        <div class="cert-item"><strong>Social Research Analyst Lv.2</strong>Human Resources Development Service of Korea · May 2019</div>
+        <div class="cert-item"><strong>E-commerce Export Master Lv.2</strong>Cafe24 · May 2019</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Hong Soojeong · Portfolio 2026</div>
+  <div class="footer-copy">© 2026 All rights reserved.</div>
+</footer>
+
+</body>
+</html>
